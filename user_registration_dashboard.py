@@ -24,7 +24,7 @@ map_user["Year-Month"] = pd.to_datetime(map_user[["year", "month"]].assign(day=1
 # ----Top States, Districts & Pincodes ----
 st.markdown("## Top Regions by Registered Users")
 
-region_option = st.radio("View by:", ["State", "District", "Pincode"], horizontal=True)
+region_option = st.radio("View by:", ["State", "District"], horizontal=True)
 
 if region_option == "State":
     top_states = aggregated_user.groupby("state")["registered_users"].sum().sort_values(ascending=False).head(10).reset_index()
@@ -32,9 +32,7 @@ if region_option == "State":
 elif region_option == "District":
     top_districts = map_user.groupby("district")["registered_users"].sum().sort_values(ascending=False).head(10).reset_index()
     fig = px.bar(top_districts, x="district", y="registered_users", color="registered_users", title="Top 10 Districts by Registered Users")
-else:
-    top_pins = top_user.groupby("pincode")["registered_users"].sum().sort_values(ascending=False).head(10).reset_index()
-    fig = px.bar(top_pins, x="pincode", y="registered_users", color="registered_users", title="Top 10 Pincodes by Registered Users")
+
 
 st.plotly_chart(fig, use_container_width=True)
 
