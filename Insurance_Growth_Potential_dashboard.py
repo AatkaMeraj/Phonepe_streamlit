@@ -18,11 +18,12 @@ aggregated_transaction_state = aggregated_transaction.groupby(['state', 'year', 
 aggregated_insurance_state = aggregated_insurance.groupby(['state', 'year', 'month'])[['amount']].sum().reset_index()
 
 # --- Tabs ---
-tab1, tab2, tab3, tab4 = st.tabs([
+tab1, tab2, tab3, tab4, tab5 = st.tabs([
     "Top Insurance States",
     "Insurance Growth Over Time",
     "State vs District View",
-    "Insurance Intensity Analysis"
+    "Insurance Intensity Analysis",
+    "Top 10 by Transactions"
 ])
 
 # ---Insurance Penetration ---
@@ -108,5 +109,50 @@ with tab4:
               title="Top Districts by Insurance Intensity (%)",
               labels={"insurance_intensity": "Insurance Share of Transactions"})
         st.plotly_chart(fig6, use_container_width=True)
+
+# ----------- Top 10 by Transactions --------------------
+with tab5:
+   
+    view_option = st.radio("View by:", ["State", "District", "Pincode"], horizontal=True)
+
+    # ----- Top States -----
+    if view_option == "State":
+        top_states = aggregated_insurance.groupby("state")["amount"].sum().nlargest(10).reset_index()
+        fig1 = px.bar(top_states, x="state", y="amount", color="amount",
+                      title="Top 10 States by Insurance Transaction Amount",
+                      labels={"amount": "Insurance Amount", "state": "State"})
+        st.plotly_chart(fig1, use_container_width=True)
+
+    # ----- Top Districts -----
+    elif view_option == "District":
+        if "entity_type" in top_insurance.columns and "district" in top_insurance.columns:
+            district_data = top_insurance[top_insurance["entity_type"] == "district"]
+            top_districts = district_data.groupby("district")["amount"].sum().nlargest(10).reset_index()
+
+            fig2 = px.bar(top_districts, x="district", y="amount", color="amount",
+                          title="Top 10 Districts by Insurance Transaction Amount",
+                          labels={"amount": "Insurance Amount", "district": "District"})
+            st.plotly_chart(fig2, use_container_width=True)
+        elif "district" in map_insurance_hover.columns:
+            top_districts = map_insurance_hover.groupby("district")["amount"].sum().nlargest(10).reset_index()
+            fig2 = px.bar(top_districts, x="district", y="amount", color="amount",
+                          title="Top 10 Districts by Insurance Transaction Amount",
+                          labels={"amount": "Insurance Amount", "district": "District"})
+            st.plotly_chart(fig2, use_container_width=True)
+        else:
+            st.warning("District data not available in `top_insurance` or `map_insurance_hover`.")
+
+    # ----- Top Pincodes -----
+    elif view_option == "Pincode":
+        if "entity_type" in top_insurance.columns and "pincode" in top_insurance.columns:
+            pincode_data = top_insurance[top_insurance["entity_type"] == "pincode"]
+            top_pins = pincode_data.groupby("pincode")["amount"].sum().nlargest(10).reset_index()
+
+            fig3 = px.bar(top_pins, x="pincode", y="amount", color="amount",
+                          title="Top 10 Pincodes by Insurance Transaction Amount",
+                          labels={"amount": "Insurance Amount", "pincode": "Pincode"})
+            st.plotly_chart(fig3, use_container_width=True)
+        else:
+            st.warning("Pincode data not available in `top_insurance`.")
 
       
