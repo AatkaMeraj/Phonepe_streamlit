@@ -144,7 +144,7 @@ with tab5:
 
     # ----- Top Pincodes -----
     elif view_option == "Pincode":
-        if "entity_type" in top_insurance.columns and "pincode" in top_insurance.columns:
+        if "entity_type" in top_insurance.columns :
             pincode_data = top_insurance[top_insurance["entity_type"] == "pincode"]
             top_pins = pincode_data.groupby("pincode")["amount"].sum().nlargest(10).reset_index()
 
