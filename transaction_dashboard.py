@@ -12,7 +12,7 @@ agg_transaction["quarter"] = agg_transaction["month"].apply(
 )
 
 # Title
-st.title("PhonePe Transaction by State & District Dashboard")
+st.title("PhonePe Transaction by State & District")
 
 
 # Preprocessing
