@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 agg_transaction = pd.read_csv("aggregated_transaction.csv")
-map_trans_hover = pd.read_csv("map_transation_hover.csv")
+map_trans_hover = pd.read_csv("map_transaction_hover.csv")
 
 
 # Create Quarter column
