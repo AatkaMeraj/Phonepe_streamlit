@@ -7,9 +7,9 @@ st.title(" PhonePe User Registration Insights")
 
 # ---- Load Data ----
 
-aggregated_user = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\aggregated_user.csv")
-map_user = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\map_user.csv")
-top_user = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\top_user.csv")
+aggregated_user = pd.read_csv("aggregated_user.csv")
+map_user = pd.read_csv("map_user.csv")
+top_user = pd.read_csv("top_user.csv")
 
 
 # ---- Preprocessing ----
