@@ -3,7 +3,7 @@ import pandas as pd
 import plotly.express as px
 
 # ---- Title ----
-st.title(" PhonePe User Registration Insights")
+st.title(" PhonePe User Registration ")
 
 # ---- Load Data ----
 
