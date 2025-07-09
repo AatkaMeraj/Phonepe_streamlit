@@ -12,7 +12,7 @@ agg_transaction["quarter"] = agg_transaction["month"].apply(
 )
 
 # Title
-st.title("PhonePe Transaction Insights Dashboard")
+st.title("PhonePe Transaction by State & District Dashboard")
 
 
 # Preprocessing
@@ -20,7 +20,7 @@ agg_transaction['Year-Month'] = pd.to_datetime(agg_transaction[['year', 'month']
 state_data = agg_transaction.groupby(['state', 'year', 'month', 'type']).agg({'amount': 'sum', 'count': 'sum'}).reset_index()
 
 map_trans_hover['Year-Month'] = pd.to_datetime(map_trans_hover[['year', 'month']].assign(day=1))
-district_data = map_trans_hover[map_ins_hover['district'].notna()]
+district_data = map_trans_hover[map_trans_hover['district'].notna()]
 
 
 
