@@ -59,6 +59,7 @@ with tab2:
 
 # ---  Top 10 States & Districts ---
 with tab3:
+    st.subheader("State vs District View")
     view_option = st.radio("View Top 10 By:", ["State", "District"], horizontal=True)
 
     if view_option == "State":
