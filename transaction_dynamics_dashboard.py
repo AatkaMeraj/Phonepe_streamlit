@@ -7,9 +7,9 @@ st.title("PhonePe Transaction Dynamics ")
 
 # ---- Load Data ----
 
-agg_transaction = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\aggregated_transaction.csv")
-map_trans_hover = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\map_transaction_hover.csv")
-top_transaction= pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\top_transaction.csv")
+agg_transaction = pd.read_csv("aggregated_transaction.csv")
+map_trans_hover = pd.read_csv("map_transaction_hover.csv")
+top_transaction= pd.read_csv("top_transaction.csv")
   
 
 # ---- Preprocessing ----
