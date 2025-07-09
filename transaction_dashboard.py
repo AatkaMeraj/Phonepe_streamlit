@@ -2,9 +2,9 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 
-agg_transaction = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\aggregated_transaction.csv")
-map_ins_hover = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\map_insurance_hover.csv")
-top_transaction = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\top_transaction.csv")
+agg_transaction = pd.read_csv("aggregated_transaction.csv")
+map_ins_hover = pd.read_csv("map_insurance_hover.csv")
+top_transaction = pd.read_csv("top_transaction.csv")
 
 # Create Quarter column
 agg_transaction["quarter"] = agg_transaction["month"].apply(
