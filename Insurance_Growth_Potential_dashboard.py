@@ -53,7 +53,7 @@ with tab2:
     growth_trend = aggregated_insurance.groupby("Year-Month")["amount"].sum().reset_index()
 
     fig2 = px.line(growth_trend, x="Year-Month", y="amount",
-                   title="Insurance Transactions Over Time (India-wide)",
+                   title="Insurance Transactions Over Time",
                    labels={"amount": "Insurance Amount (₹)"})
     st.plotly_chart(fig2, use_container_width=True)
 
