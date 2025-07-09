@@ -42,8 +42,8 @@ st.plotly_chart(fig2, use_container_width=True)
 st.markdown("###  Transaction Amount Comparison by State")
 selected_states = st.multiselect("Select States", options=agg_transaction['state'].unique(), default=['Maharashtra', 'Karnataka'])
 type_df = agg_transaction[agg_transaction['state'].isin(selected_states)].groupby(['state', 'type'])['amount'].sum().reset_index()
-fig3 = px.bar(type_df, x='state', y='amount', color='type', barmode='stack',
-              title="Transaction Amount Comparison by State")
+fig3 = px.bar(type_df, x='state', y='amount', color='type', barmode='stack'
+             
 st.plotly_chart(fig3, use_container_width=True)
 
 # ----------------- Trend Over Time -----------------
