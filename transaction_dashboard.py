@@ -27,14 +27,14 @@ district_data = map_trans_hover[map_trans_hover['district'].notna()]
 # ----------------- Top States -----------------
 st.markdown("###  Top 10 States by Transaction Amount")
 top_states = agg_transaction.groupby('state')['amount'].sum().nlargest(10).reset_index()
-fig1 = px.bar(top_states, x='state', y='amount', color='amount', title="Top 10 States by Transaction Amount",
+fig1 = px.bar(top_states, x='state', y='amount', color='amount',
               labels={'amount': 'Transaction Amount', 'state': 'State'})
 st.plotly_chart(fig1, use_container_width=True)
 
 # ----------------- Top Districts -----------------
 st.markdown("###  Top 10 Districts by Transaction Amount")
 top_districts = district_data.groupby('district')['amount'].sum().nlargest(10).reset_index()
-fig2 = px.bar(top_districts, x='district', y='amount', color='amount', title="Top 10 Districts by Transaction Amount",
+fig2 = px.bar(top_districts, x='district', y='amount', color='amount',
               labels={'amount': 'Transaction Amount', 'district': 'District'})
 st.plotly_chart(fig2, use_container_width=True)
 
@@ -69,6 +69,5 @@ with tab2:
 st.markdown("### Total Monthly Transaction Trend")
 monthly = agg_transaction.groupby('Year-Month').agg({'count': 'sum'}).reset_index()
 fig6 = px.area(monthly, x='Year-Month', y='count',
-               title='Total Monthly Transaction Volume',
                labels={'count': 'Transaction Count'})
 st.plotly_chart(fig6, use_container_width=True)
