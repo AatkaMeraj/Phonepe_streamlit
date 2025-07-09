@@ -4,11 +4,11 @@ import plotly.express as px
 
 
 # --- Load Data ---
-aggregated_insurance = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\aggregated_insurance.csv")
-aggregated_transaction = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\aggregated_transaction.csv")
-map_insurance_hover = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\map_insurance_hover.csv")
-map_transaction_hover = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\map_transaction_hover.csv")
-top_insurance = pd.read_csv(r"C:\Users\aatka\Downloads\phonepe_tables\top_insurance.csv")
+aggregated_insurance = pd.read_csv("aggregated_insurance.csv")
+aggregated_transaction = pd.read_csv("aggregated_transaction.csv")
+map_insurance_hover = pd.read_csv("map_insurance_hover.csv")
+map_transaction_hover = pd.read_csv("map_transaction_hover.csv")
+top_insurance = pd.read_csv("top_insurance.csv")
 
 # --- Preprocess ---
 for df in [aggregated_insurance, aggregated_transaction, map_insurance_hover, top_insurance]:
