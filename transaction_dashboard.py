@@ -3,8 +3,8 @@ import pandas as pd
 import plotly.express as px
 
 agg_transaction = pd.read_csv("aggregated_transaction.csv")
-map_ins_hover = pd.read_csv("map_insurance_hover.csv")
-top_transaction = pd.read_csv("top_transaction.csv")
+map_trans_hover = pd.read_csv("map_transation_hover.csv")
+
 
 # Create Quarter column
 agg_transaction["quarter"] = agg_transaction["month"].apply(
@@ -19,8 +19,8 @@ st.title("PhonePe Transaction Insights Dashboard")
 agg_transaction['Year-Month'] = pd.to_datetime(agg_transaction[['year', 'month']].assign(day=1))
 state_data = agg_transaction.groupby(['state', 'year', 'month', 'type']).agg({'amount': 'sum', 'count': 'sum'}).reset_index()
 
-map_ins_hover['Year-Month'] = pd.to_datetime(map_ins_hover[['year', 'month']].assign(day=1))
-district_data = map_ins_hover[map_ins_hover['district'].notna()]
+map_trans_hover['Year-Month'] = pd.to_datetime(map_trans_hover[['year', 'month']].assign(day=1))
+district_data = map_trans_hover[map_ins_hover['district'].notna()]
 
 
 
@@ -59,8 +59,8 @@ with tab1:
     st.plotly_chart(fig4, use_container_width=True)
 
 with tab2:
-    top5_districts = map_ins_hover.groupby('district')['amount'].sum().nlargest(5).index.tolist()
-    dist_trend = map_ins_hover[map_ins_hover['district'].isin(top5_districts)].groupby(['Year-Month', 'district'])['amount'].sum().reset_index()
+    top5_districts = map_trans_hover.groupby('district')['amount'].sum().nlargest(5).index.tolist()
+    dist_trend = map_trans_hover[map_ins_hover['district'].isin(top5_districts)].groupby(['Year-Month', 'district'])['amount'].sum().reset_index()
     fig5 = px.line(dist_trend, x='Year-Month', y='amount', color='district',
                    title="Transaction Trend Over Time - Top 5 Districts")
     st.plotly_chart(fig5, use_container_width=True)
