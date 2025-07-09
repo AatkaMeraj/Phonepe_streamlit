@@ -60,7 +60,7 @@ with tab1:
 
 with tab2:
     top5_districts = map_trans_hover.groupby('district')['amount'].sum().nlargest(5).index.tolist()
-    dist_trend = map_trans_hover[map_ins_hover['district'].isin(top5_districts)].groupby(['Year-Month', 'district'])['amount'].sum().reset_index()
+    dist_trend = map_trans_hover[map_trans_hover['district'].isin(top5_districts)].groupby(['Year-Month', 'district'])['amount'].sum().reset_index()
     fig5 = px.line(dist_trend, x='Year-Month', y='amount', color='district',
                    title="Transaction Trend Over Time - Top 5 Districts")
     st.plotly_chart(fig5, use_container_width=True)
