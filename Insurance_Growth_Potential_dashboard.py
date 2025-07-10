@@ -113,7 +113,8 @@ with tab4:
 # ----------- Top 10 by Transactions --------------------
 with tab5:
    
-    view_option = st.radio("View by:", ["State", "District"], horizontal=True)
+    view_option = st.radio("View by:", ["State", "District"], horizontal=True, key="view_option_region_tab")
+
 
     # ----- Top States -----
     if view_option == "State":
