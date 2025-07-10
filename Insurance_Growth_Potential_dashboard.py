@@ -142,17 +142,6 @@ with tab5:
         else:
             st.warning("District data not available in `top_insurance` or `map_insurance_hover`.")
 
-    # ----- Top Pincodes -----
-    elif view_option == "Pincode":
-        if "entity_type" in top_insurance.columns :
-            pincode_data = top_insurance[top_insurance["entity_type"] == "pincode"]
-            top_pins = pincode_data.groupby("pincode")["amount"].sum().nlargest(10).reset_index()
 
-            fig3 = px.bar(top_pins, x="pincode", y="amount", color="amount",
-                          title="Top 10 Pincodes by Insurance Transaction Amount",
-                          labels={"amount": "Insurance Amount", "pincode": "Pincode"})
-            st.plotly_chart(fig3, use_container_width=True)
-        else:
-            st.warning("Pincode data not available in `top_insurance`.")
 
       
