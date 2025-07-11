@@ -14,8 +14,12 @@ Insurance transaction, penetration & growth Insights
 Insurance penetration, growth potential, intensity by region, and top contributing locations.
 
 **Tech Stack**
+
 Python
+
 Streamlit
+
 Pandas
+
 Plotly
 
